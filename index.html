@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
     <style>
+        /* Все стили остаются без изменений */
         * {
             margin: 0;
             padding: 0;
@@ -248,7 +249,7 @@
 
         .advantage i {
             font-size: 3rem;
-            color: #3a8c5e;
+            color: #3a8c3d;
             margin-bottom: 1.5rem;
         }
 
@@ -361,6 +362,30 @@
 
         .submit-button:hover {
             background-color: #e68900;
+        }
+
+        /* Сообщения формы */
+        .form-message {
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1.5rem;
+            text-align: center;
+            font-weight: 500;
+            display: none;
+        }
+
+        .form-message.success {
+            background-color: rgba(46, 204, 113, 0.2);
+            color: #27ae60;
+            border: 1px solid #27ae60;
+            display: block;
+        }
+
+        .form-message.error {
+            background-color: rgba(231, 76, 60, 0.2);
+            color: #c0392b;
+            border: 1px solid #c0392b;
+            display: block;
         }
 
         /* Подвал */
@@ -530,7 +555,7 @@
             <h2 class="section-title">Комплектация системы</h2>
             <div class="package-container">
                 <div class="package-image">
-                    <img src="images/aerogrow-system.png" alt="Система AeroGrow">
+                    <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Система AeroGrow">
                 </div>
                 <div class="package-info">
                     <h3>Полный комплект для аэропоники "AeroGrow Basic"</h3>
@@ -630,29 +655,65 @@
             <h2>Заказать систему AeroGrow</h2>
             <p style="text-align: center; margin-bottom: 2rem;">Оставьте заявку, и мы свяжемся с вами для уточнения деталей заказа</p>
             
-            <form class="order-form" id="orderForm">
+            <form class="order-form" id="orderForm" action="https://formspree.io/f/mqazpeab" method="POST">
                 <div class="form-group">
-                    <label for="name">Ваше имя</label>
+                    <label for="name">Ваше имя *</label>
                     <input type="text" id="name" name="name" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="phone">Телефон</label>
+                    <label for="phone">Телефон *</label>
                     <input type="tel" id="phone" name="phone" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="email">Email</label>
+                    <label for="email">Email *</label>
                     <input type="email" id="email" name="email" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="message">Комментарий к заказу</label>
-                    <textarea id="message" name="message" rows="4" placeholder="Укажите дополнительные пожелания..."></textarea>
+                    <label for="quantity">Количество систем</label>
+                    <select id="quantity" name="quantity">
+                        <option value="1">1 система</option>
+                        <option value="2">2 системы</option>
+                        <option value="3">3 системы</option>
+                        <option value="4">4 системы</option>
+                        <option value="5+">5 и более</option>
+                    </select>
                 </div>
                 
-                <button type="submit" class="submit-button">Отправить заявку</button>
+                <div class="form-group">
+                    <label for="delivery">Способ получения</label>
+                    <select id="delivery" name="delivery">
+                        <option value="delivery">Доставка по России</option>
+                        <option value="pickup">Самовывоз (Новосибирск)</option>
+                        <option value="consultation">Сначала консультация</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Комментарий к заказу</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Укажите дополнительные пожелания, вопросы или особенности заказа..."></textarea>
+                </div>
+                
+                <!-- Скрытое поле для указания email получателя -->
+                <input type="hidden" name="_replyto" value="matvey.kotenko.88@bk.ru">
+                <input type="hidden" name="_subject" value="Новая заявка с сайта AeroGrow">
+                <input type="hidden" name="_cc" value="matvey.kotenko.88@bk.ru">
+                
+                <button type="submit" class="submit-button" id="submitButton">
+                    <span id="buttonText">Отправить заявку</span>
+                    <div id="spinner" style="display: none; margin-top: 10px;">
+                        <i class="fas fa-spinner fa-spin"></i> Отправка...
+                    </div>
+                </button>
+                
+                <div id="formMessage" class="form-message"></div>
             </form>
+            
+            <p style="text-align: center; margin-top: 1.5rem; font-size: 0.9rem; opacity: 0.8;">
+                Нажимая кнопку, вы соглашаетесь на обработку персональных данных
+            </p>
         </div>
     </section>
 
@@ -669,7 +730,7 @@
                     <h3>Контакты</h3>
                     <ul class="footer-links">
                         <li><i class="fas fa-map-marker-alt"></i> Россия, Новосибирская область</li>
-                        <li><i class="fas fa-envelope"></i> info@aerogrow.ru</li>
+                        <li><i class="fas fa-envelope"></i> matvey.kotenko.88@bk.ru</li>
                         <li><i class="fas fa-phone"></i> +7 (XXX) XXX-XX-XX</li>
                     </ul>
                 </div>
@@ -718,28 +779,67 @@
             });
         });
         
-        // Обработка формы
+        // Обработка формы с отправкой на Formspree
         const orderForm = document.getElementById('orderForm');
+        const formMessage = document.getElementById('formMessage');
+        const submitButton = document.getElementById('submitButton');
+        const buttonText = document.getElementById('buttonText');
+        const spinner = document.getElementById('spinner');
         
-        orderForm.addEventListener('submit', function(e) {
+        orderForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            // Получаем данные формы
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const email = document.getElementById('email').value;
+            // Показываем спиннер загрузки
+            buttonText.style.display = 'none';
+            spinner.style.display = 'block';
+            submitButton.disabled = true;
             
-            // Имитация отправки
-            alert(`Спасибо, ${name}! Ваша заявка принята. Мы свяжемся с вами по телефону ${phone} в ближайшее время.`);
+            // Собираем данные формы
+            const formData = new FormData(orderForm);
             
-            // Очищаем форму
-            orderForm.reset();
-            
-            // Прокручиваем к верху
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            try {
+                // Отправляем данные на Formspree
+                const response = await fetch(orderForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    // Успешная отправка
+                    formMessage.textContent = 'Спасибо! Ваша заявка успешно отправлена. Мы свяжемся с вами в ближайшее время.';
+                    formMessage.className = 'form-message success';
+                    
+                    // Очищаем форму
+                    orderForm.reset();
+                    
+                    // Прокручиваем к сообщению об успехе
+                    formMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } else {
+                    // Ошибка отправки
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || 'Ошибка при отправке формы');
+                }
+            } catch (error) {
+                // Ошибка сети или сервера
+                formMessage.textContent = 'Произошла ошибка при отправке. Пожалуйста, попробуйте ещё раз или свяжитесь с нами по email: matvey.kotenko.88@bk.ru';
+                formMessage.className = 'form-message error';
+                formMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                console.error('Form submission error:', error);
+            } finally {
+                // Восстанавливаем кнопку
+                buttonText.style.display = 'block';
+                spinner.style.display = 'none';
+                submitButton.disabled = false;
+                
+                // Автоматически скрываем сообщение через 10 секунд
+                setTimeout(() => {
+                    formMessage.style.display = 'none';
+                }, 10000);
+            }
         });
         
         // Анимация при прокрутке
@@ -763,6 +863,26 @@
             card.style.transform = 'translateY(20px)';
             card.style.transition = 'opacity 0.5s, transform 0.5s';
             observer.observe(card);
+        });
+        
+        // Автоматический формат телефона
+        const phoneInput = document.getElementById('phone');
+        phoneInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            
+            if (value.length > 0) {
+                if (value.length <= 3) {
+                    value = `+7 (${value}`;
+                } else if (value.length <= 6) {
+                    value = `+7 (${value.slice(1, 4)}) ${value.slice(4)}`;
+                } else if (value.length <= 8) {
+                    value = `+7 (${value.slice(1, 4)}) ${value.slice(4, 7)}-${value.slice(7)}`;
+                } else {
+                    value = `+7 (${value.slice(1, 4)}) ${value.slice(4, 7)}-${value.slice(7, 9)}-${value.slice(9, 11)}`;
+                }
+            }
+            
+            e.target.value = value;
         });
     </script>
 </body>
