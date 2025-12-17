@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AeroGrow - Умная система управления для аэропоники</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: #2a5c3d;
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Шапка */
+        header {
+            background: linear-gradient(135deg, #2a5c3d 0%, #3a8c5e 100%);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            font-size: 2rem;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 1.1rem;
+        }
+
+        nav a:hover {
+            color: #c8f7c5;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Герой-секция */
+        .hero {
+            background: linear-gradient(rgba(42, 92, 61, 0.85), rgba(42, 92, 61, 0.9)), url('https://images.unsplash.com/photo-1598880940080-ff9c8d3b170d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 5rem 0;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #ff9800;
+            color: white;
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 152, 0, 0.4);
+        }
+
+        .cta-button:hover {
+            background-color: #e68900;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 152, 0, 0.5);
+        }
+
+        /* Особенности */
+        .features {
+            padding: 4rem 0;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background-color: #f8fdf7;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            border-left: 5px solid #3a8c5e;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: #3a8c5e;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 1rem;
+        }
+
+        /* Комплектация */
+        .package {
+            padding: 4rem 0;
+            background-color: #f0f9f3;
+        }
+
+        .package-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .package-image {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .package-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .package-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            color: #ff9800;
+            font-weight: 700;
+            margin: 1rem 0;
+        }
+
+        .components-list {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .components-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+        }
+
+        .components-list i {
+            color: #3a8c5e;
+            margin-right: 10px;
+        }
+
+        /* Преимущества */
+        .advantages {
+            padding: 4rem 0;
+            background-color: white;
+        }
+
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .advantage {
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+
+        .advantage i {
+            font-size: 3rem;
+            color: #3a8c5e;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Для кого */
+        .audience {
+            padding: 4rem 0;
+            background-color: #f0f9f3;
+        }
+
+        .audience-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .audience-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .audience-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .audience-card i {
+            font-size: 3rem;
+            color: #3a8c5e;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Отзыв эксперимента */
+        .testimonial {
+            padding: 4rem 0;
+            background-color: white;
+            text-align: center;
+        }
+
+        .testimonial-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #f8fdf7;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-left: 5px solid #ff9800;
+        }
+
+        .testimonial-content p {
+            font-style: italic;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Форма заказа */
+        .order {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #2a5c3d 0%, #3a8c5e 100%);
+            color: white;
+        }
+
+        .order h2 {
+            color: white;
+            text-align: center;
+        }
+
+        .order-form {
+            max-width: 600px;
+            margin: 2rem auto;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 2.5rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 5px;
+            border: none;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .submit-button {
+            display: block;
+            width: 100%;
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            padding: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .submit-button:hover {
+            background-color: #e68900;
+        }
+
+        /* Подвал */
+        footer {
+            background-color: #1a3a27;
+            color: #ddd;
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-section h3 {
+            color: #c8f7c5;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #ff9800;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid #2a5c3d;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .mobile-menu {
+                display: none;
+                width: 100%;
+            }
+            
+            .mobile-menu.active {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-leaf"></i>
+                <div class="logo-text">AeroGrow</div>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav class="mobile-menu" id="mobileMenu">
+                <ul>
+                    <li><a href="#features">Возможности</a></li>
+                    <li><a href="#package">Комплектация</a></li>
+                    <li><a href="#advantages">Преимущества</a></li>
+                    <li><a href="#audience">Для кого</a></li>
+                    <li><a href="#order">Заказать</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Герой-секция -->
+    <section class="hero">
+        <div class="container">
+            <h1>Умная система мониторинга и управления для аэропоники</h1>
+            <p>Автоматизированное решение для выращивания растений без почвы с удалённым контролем через Telegram и облачной аналитикой. Сократите потребление воды до 95% и минимизируйте риски потери урожая.</p>
+            <a href="#order" class="cta-button">Заказать систему за 15 000 ₽</a>
+        </div>
+    </section>
+
+    <!-- Особенности -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Возможности системы AeroGrow</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h3>Комплексный мониторинг</h3>
+                    <p>Контроль уровня раствора, температуры корневой зоны, электропроводности (EC), температуры, влажности и давления воздуха в реальном времени.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Автоматическое управление</h3>
+                    <p>Автоматическое орошение по заданным интервалам и освещение по расписанию. Ручное управление через Telegram-бота в любой момент.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Облачная аналитика</h3>
+                    <p>Архивация всех данных в облачном хранилище ThingSpeak для анализа и построения графиков изменения параметров.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3>Проактивные оповещения</h3>
+                    <p>Автоматические уведомления в Telegram при критических событиях: низкий уровень раствора, выход параметров за пределы, неисправности.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Комплектация -->
+    <section class="package" id="package">
+        <div class="container">
+            <h2 class="section-title">Комплектация системы</h2>
+            <div class="package-container">
+                <div class="package-image">
+                    <img src="images/aerogrow-system.png" alt="Система AeroGrow">
+                </div>
+                <div class="package-info">
+                    <h3>Полный комплект для аэропоники "AeroGrow Basic"</h3>
+                    <p>Готовая к работе система, включающая всё необходимое для автоматизированного выращивания растений методом аэропоники.</p>
+                    <div class="price">15 000 ₽</div>
+                    
+                    <h4>В комплект входит:</h4>
+                    <ul class="components-list">
+                        <li><i class="fas fa-microchip"></i> Контроллер ESP-WROOM-32U</li>
+                        <li><i class="fas fa-thermometer-half"></i> Датчики: BME280, TDS/EC, DS18b20, уровня воды</li>
+                        <li><i class="fas fa-tv"></i> TFT-дисплей 1.8 дюймов</li>
+                        <li><i class="fas fa-plug"></i> Силовые модули и блок питания 12В 3А</li>
+                        <li><i class="fas fa-tint"></i> Блок форсунок и помпа для орошения</li>
+                        <li><i class="fas fa-lightbulb"></i> Фитолампа для освещения</li>
+                        <li><i class="fas fa-box"></i> Специализированный пластиковый корпус</li>
+                    </ul>
+                    
+                    <p><strong>Бонус:</strong> Бесплатная настройка и инструкция по запуску системы</p>
+                    <a href="#order" class="cta-button" style="margin-top: 1.5rem;">Заказать сейчас</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Преимущества -->
+    <section class="advantages" id="advantages">
+        <div class="container">
+            <h2 class="section-title">Преимущества AeroGrow</h2>
+            <div class="advantages-grid">
+                <div class="advantage">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Автоматизация контроля</h3>
+                    <p>Исключает необходимость постоянного ручного контроля параметров</p>
+                </div>
+                
+                <div class="advantage">
+                    <i class="fas fa-water"></i>
+                    <h3>Экономия воды</h3>
+                    <p>Сокращает потребление воды до 95% по сравнению с традиционными методами</p>
+                </div>
+                
+                <div class="advantage">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Повышение урожайности</h3>
+                    <p>Оптимальные условия ускоряют рост растений и повышают урожайность</p>
+                </div>
+                
+                <div class="advantage">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Удалённое управление</h3>
+                    <p>Полный контроль через Telegram-бота с любого устройства</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Для кого -->
+    <section class="audience" id="audience">
+        <div class="container">
+            <h2 class="section-title">Для кого предназначена система</h2>
+            <div class="audience-cards">
+                <div class="audience-card">
+                    <i class="fas fa-seedling"></i>
+                    <h3>Энтузиасты растениеводства</h3>
+                    <p>Для тех, кто хочет выращивать растения дома без постоянного контроля и рисков потери урожая</p>
+                </div>
+                
+                <div class="audience-card">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Образовательные учреждения</h3>
+                    <p>Современная учебная платформа для изучения биологии, агрономии и IoT-технологий</p>
+                </div>
+                
+                <div class="audience-card">
+                    <i class="fas fa-store"></i>
+                    <h3>Малый агробизнес</h3>
+                    <p>Инструмент повышения эффективности производства с удалённым мониторингом и автоматизацией</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Отзыв эксперимента -->
+    <section class="testimonial">
+        <div class="container">
+            <h2 class="section-title">Результаты эксперимента</h2>
+            <div class="testimonial-content">
+                <p>"Система AeroGrow успешно отработала 35 дней в полностью автономном режиме при выращивании рукколы. Все параметры оставались стабильными, растения показали равномерный и здоровый рост. Система своевременно оповестила о снижении уровня раствора, что позволило вовремя его пополнить."</p>
+                <p><strong>Результат эксперимента:</strong> Получена первая товарная зелень, подтверждена стабильность работы системы в длительном режиме.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Форма заказа -->
+    <section class="order" id="order">
+        <div class="container">
+            <h2>Заказать систему AeroGrow</h2>
+            <p style="text-align: center; margin-bottom: 2rem;">Оставьте заявку, и мы свяжемся с вами для уточнения деталей заказа</p>
+            
+            <form class="order-form" id="orderForm">
+                <div class="form-group">
+                    <label for="name">Ваше имя</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Телефон</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Комментарий к заказу</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Укажите дополнительные пожелания..."></textarea>
+                </div>
+                
+                <button type="submit" class="submit-button">Отправить заявку</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>AeroGrow</h3>
+                    <p>Интеллектуальная система мониторинга и управления средой для аэропоники. Автоматизация выращивания растений с удалённым контролем.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Россия, Новосибирская область</li>
+                        <li><i class="fas fa-envelope"></i> info@aerogrow.ru</li>
+                        <li><i class="fas fa-phone"></i> +7 (XXX) XXX-XX-XX</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Быстрые ссылки</h3>
+                    <ul class="footer-links">
+                        <li><a href="#features">Возможности</a></li>
+                        <li><a href="#package">Комплектация</a></li>
+                        <li><a href="#advantages">Преимущества</a></li>
+                        <li><a href="#audience">Для кого</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2025 AeroGrow. Проект участника Всероссийского конкурса научно-технологических проектов «Большие вызовы».</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Мобильное меню
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+        
+        // Плавная прокрутка
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+                
+                // Закрываем мобильное меню после клика
+                mobileMenu.classList.remove('active');
+            });
+        });
+        
+        // Обработка формы
+        const orderForm = document.getElementById('orderForm');
+        
+        orderForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Получаем данные формы
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            
+            // Имитация отправки
+            alert(`Спасибо, ${name}! Ваша заявка принята. Мы свяжемся с вами по телефону ${phone} в ближайшее время.`);
+            
+            // Очищаем форму
+            orderForm.reset();
+            
+            // Прокручиваем к верху
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Анимация при прокрутке
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Наблюдаем за карточками
+        document.querySelectorAll('.feature-card, .advantage, .audience-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s, transform 0.5s';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
