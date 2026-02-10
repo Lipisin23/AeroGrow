@@ -336,14 +336,14 @@
             line-height: 1.5;
         }
 
-        /* ВИДЕООБЗОР - АДАПТИРОВАННЫЙ РАЗДЕЛ */
+        /* ВИДЕООБЗОР - ИСКЛЮЧИТЕЛЬНО ВЕРТИКАЛЬНЫЙ ДЛЯ СМАРТФОНОВ */
         .video-review {
-            padding: 3rem 0;
+            padding: 2rem 0;
             background-color: white;
         }
 
         .video-container {
-            max-width: 1000px;
+            max-width: 600px; /* Уже для вертикального видео */
             margin: 0 auto;
             background-color: #f8fdf7;
             border-radius: 12px;
@@ -354,20 +354,18 @@
 
         .video-wrapper {
             position: relative;
-            padding-bottom: 56.25%; /* Соотношение сторон 16:9 */
-            height: 0;
+            width: 100%;
             overflow: hidden;
             background-color: #000;
+            aspect-ratio: 9/16; /* Строго вертикальное соотношение 9:16 */
         }
 
         .video-wrapper video {
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            display: block;
             background-color: #000;
+            object-fit: cover; /* Заполняем всю область видео */
         }
 
         .video-poster {
@@ -383,6 +381,8 @@
             justify-content: center;
             cursor: pointer;
             transition: opacity 0.3s;
+            z-index: 10;
+            background-color: #000;
         }
 
         .video-poster:hover {
@@ -400,6 +400,7 @@
             color: white;
             font-size: 2rem;
             transition: transform 0.3s, background 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
 
         .video-poster:hover .play-button {
@@ -593,28 +594,88 @@
             line-height: 1.5;
         }
 
-        /* Медиазапросы для адаптации */
-        /* Планшеты (768px - 1024px) */
-        @media (min-width: 768px) and (max-width: 1024px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .section-title {
-                font-size: 2.2rem;
-            }
-
-            .logo-text {
-                font-size: 1.7rem;
-            }
-
-            nav a {
-                font-size: 1.05rem;
-            }
-        }
-
+        /* ВЕРТИКАЛЬНОЕ ВИДЕО НА ВСЕХ УСТРОЙСТВАХ */
         /* Мобильные устройства (до 767px) */
         @media (max-width: 767px) {
+            .video-review {
+                padding: 1.5rem 0;
+            }
+            
+            .video-container {
+                max-width: 100%;
+                border-radius: 10px;
+                border-width: 1px;
+            }
+            
+            /* Вертикальное видео всегда */
+            .video-wrapper {
+                aspect-ratio: 9/16; /* Строго вертикальное */
+                max-height: 80vh;
+            }
+            
+            .video-wrapper video {
+                object-fit: contain; /* Показываем всё видео */
+            }
+            
+            .video-poster {
+                background-size: contain;
+                background-repeat: no-repeat;
+            }
+            
+            .play-button {
+                width: 60px;
+                height: 60px;
+                font-size: 1.7rem;
+                background: rgba(42, 92, 61, 0.9);
+            }
+            
+            .video-info {
+                padding: 1.2rem;
+            }
+            
+            .video-info h3 {
+                font-size: 1.3rem;
+                margin-bottom: 0.8rem;
+            }
+            
+            .video-info p {
+                font-size: 0.95rem;
+                line-height: 1.5;
+            }
+            
+            .video-features {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+                margin-top: 1.2rem;
+            }
+            
+            .video-feature {
+                padding: 0.8rem;
+                flex-direction: row;
+                text-align: left;
+                gap: 0.8rem;
+            }
+            
+            .video-feature i {
+                margin-bottom: 0;
+                font-size: 1.5rem;
+                flex-shrink: 0;
+            }
+            
+            .video-feature span {
+                font-size: 0.9rem;
+                text-align: left;
+            }
+            
+            .video-download-link {
+                margin-top: 1.2rem;
+            }
+            
+            .video-download-link a {
+                font-size: 0.95rem;
+            }
+            
+            /* Общие мобильные стили */
             .header-container {
                 flex-direction: row;
                 justify-content: space-between;
@@ -701,37 +762,6 @@
                 font-size: 1.8rem;
             }
 
-            .video-container {
-                border-radius: 8px;
-            }
-
-            .video-info {
-                padding: 1.2rem;
-            }
-
-            .video-info h3 {
-                font-size: 1.3rem;
-            }
-
-            .video-info p {
-                font-size: 0.95rem;
-            }
-
-            .video-features {
-                grid-template-columns: 1fr;
-                gap: 0.8rem;
-            }
-
-            .video-feature {
-                padding: 0.8rem;
-            }
-
-            .play-button {
-                width: 60px;
-                height: 60px;
-                font-size: 1.7rem;
-            }
-
             .contact h2 {
                 font-size: 1.8rem;
             }
@@ -757,6 +787,20 @@
             .copyright p {
                 font-size: 0.8rem;
                 padding: 0 0.5rem;
+            }
+        }
+
+        /* Планшеты и десктопы */
+        @media (min-width: 768px) {
+            /* На планшетах и ПК также вертикальное видео */
+            .video-wrapper {
+                aspect-ratio: 9/16; /* Сохраняем вертикальное */
+                max-width: 500px; /* Ограничиваем ширину */
+                margin: 0 auto;
+            }
+            
+            .video-container {
+                max-width: 600px;
             }
         }
 
@@ -794,10 +838,6 @@
                 font-size: 2.5rem;
             }
 
-            .video-container {
-                max-width: 900px;
-            }
-
             .video-info {
                 padding: 2rem;
             }
@@ -805,10 +845,25 @@
             .video-info h3 {
                 font-size: 1.8rem;
             }
+            
+            /* На десктопе делаем видео немного больше */
+            .video-wrapper {
+                max-width: 600px;
+            }
+            
+            .video-container {
+                max-width: 700px;
+            }
         }
 
         /* Ориентация смартфона */
         @media (max-width: 767px) and (orientation: landscape) {
+            /* В ландшафтной ориентации всё равно показываем вертикальное видео */
+            .video-wrapper {
+                aspect-ratio: 9/16;
+                max-height: 90vh; /* Немного больше высота */
+            }
+            
             .hero {
                 padding: 2rem 0;
             }
@@ -825,10 +880,6 @@
             .mobile-menu {
                 max-height: 70vh;
                 overflow-y: auto;
-            }
-
-            .video-wrapper {
-                padding-bottom: 40%; /* Меньшая высота для ландшафтной ориентации */
             }
         }
 
@@ -1019,7 +1070,7 @@
         </div>
     </section>
 
-    <!-- ВИДЕООБЗОР - АДАПТИРОВАННЫЙ РАЗДЕЛ -->
+    <!-- ВИДЕООБЗОР - ИСКЛЮЧИТЕЛЬНО ВЕРТИКАЛЬНЫЙ -->
     <section class="video-review" id="video-review">
         <div class="container">
             <h2 class="section-title">Видеообзор системы</h2>
@@ -1027,7 +1078,7 @@
             <div class="video-container">
                 <div class="video-wrapper">
                     <!-- Видео с превью и кнопкой воспроизведения -->
-                    <video id="aerogrowVideo" controls poster="images/Zastavka.jpg">
+                    <video id="aerogrowVideo" controls playsinline poster="images/Zastavka.jpg">
                         <source src="videos/AeroGrow1_06.mp4" type="video/mp4">
                         Ваш браузер не поддерживает видео.
                     </video>
@@ -1043,6 +1094,24 @@
                 <div class="video-info">
                     <h3>Посмотрите, как работает система AeroGrow</h3>
                     <p>В этом видео мы демонстрируем все возможности системы: от установки и настройки до повседневной эксплуатации. Вы увидите, как просто управлять аэропонной установкой через Telegram-бота и как система автоматически поддерживает оптимальные условия для роста растений.</p>
+                    
+                    <div class="video-features">
+                        <div class="video-feature">
+                            <i class="fas fa-cogs"></i>
+                            <span>Простая настройка</span>
+                        </div>
+                        <div class="video-feature">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>Управление в Telegram</span>
+                        </div>
+                        <div class="video-feature">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Мониторинг параметров</span>
+                        </div>
+                        <div class="video-feature">
+                            <i class="fas fa-robot"></i>
+                            <span>Автоматизация</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1050,7 +1119,9 @@
             <div class="video-download-link">
                 <p style="color: #666; font-style: italic; margin-top: 1.5rem;">
                     Видео также доступно на
-                    <a href="https://disk.yandex.ru/i/medlxonbqjNPhQ" target="_blank">Яндекс Диске
+                    <a href="https://disk.yandex.ru/i/medlxonbqjNPhQ" target="_blank" rel="noopener noreferrer">
+                        Яндекс Диске
+                        <i class="fas fa-external-link-alt"></i>
                     </a>
                 </p>
             </div>
@@ -1140,7 +1211,10 @@
             // Воспроизведение видео при клике на превью
             videoPoster.addEventListener('click', () => {
                 videoPoster.style.display = 'none';
-                video.play();
+                video.play().catch(e => {
+                    console.log("Автовоспроизведение заблокировано, пользователь должен начать воспроизведение вручную");
+                    videoPoster.style.display = 'flex';
+                });
             });
 
             // Показ превью при остановке видео
@@ -1157,6 +1231,38 @@
             video.addEventListener('ended', () => {
                 videoPoster.style.display = 'flex';
             });
+
+            // Для мобильных устройств добавляем тач-события
+            videoPoster.addEventListener('touchstart', function(e) {
+                e.preventDefault();
+                // Запускаем видео при касании на мобильных
+                videoPoster.style.display = 'none';
+                video.play().catch(e => {
+                    console.log("Автовоспроизведение заблокировано");
+                    videoPoster.style.display = 'flex';
+                });
+            }, { passive: false });
+        }
+
+        // Функция для вертикальной адаптации видео
+        function setupVerticalVideo() {
+            const video = document.getElementById('aerogrowVideo');
+            const videoWrapper = document.querySelector('.video-wrapper');
+            
+            if (!video || !videoWrapper) return;
+            
+            // На мобильных устройствах добавляем атрибуты для вертикального воспроизведения
+            if (window.innerWidth <= 767) {
+                video.setAttribute('playsinline', '');
+                video.setAttribute('webkit-playsinline', '');
+                video.setAttribute('preload', 'metadata');
+                
+                // Принудительно устанавливаем вертикальное соотношение
+                videoWrapper.style.aspectRatio = '9/16';
+            }
+            
+            // Всегда вертикальное видео, независимо от ориентации
+            videoWrapper.style.maxWidth = '100%';
         }
 
         // Плавная прокрутка с учётом высоты шапки
@@ -1206,35 +1312,38 @@
             observer.observe(element);
         });
 
-        // Адаптация видео для мобильных устройств
-        function adaptVideoForMobile() {
-            if (window.innerWidth <= 767) {
-                // Для мобильных устройств устанавливаем атрибуты для лучшей производительности
-                if (video) {
-                    video.setAttribute('playsinline', '');
-                    video.setAttribute('webkit-playsinline', '');
-                    video.setAttribute('muted', 'muted');
-                }
+        // Инициализация при загрузке
+        window.addEventListener('load', function() {
+            setupVerticalVideo();
+            
+            // Предзагрузка видео для лучшей производительности
+            const video = document.getElementById('aerogrowVideo');
+            if (video) {
+                video.load();
             }
-        }
+        });
 
-        // Вызываем при загрузке и изменении размера окна
-        window.addEventListener('load', adaptVideoForMobile);
-        window.addEventListener('resize', adaptVideoForMobile);
-
-        // Предотвращение стандартного поведения для мобильных устройств
-        document.addEventListener('touchstart', function() {}, {passive: true});
+        // Обработка изменения размера окна
+        window.addEventListener('resize', setupVerticalVideo);
+        
+        // Обработка изменения ориентации
+        window.addEventListener('orientationchange', function() {
+            setTimeout(setupVerticalVideo, 100);
+        });
 
         // Оптимизация для устройств с тач-экраном
         if ('ontouchstart' in window) {
             document.body.classList.add('touch-device');
 
             // Улучшение отзывчивости для тач-устройств
-            const clickableElements = document.querySelectorAll('.feature-card, .audience-card, .video-feature, .email-link');
+            const clickableElements = document.querySelectorAll('.feature-card, .audience-card, .video-feature, .email-link, .video-poster');
             clickableElements.forEach(element => {
                 element.style.cursor = 'pointer';
             });
         }
+
+        // Предотвращение стандартного поведения для мобильных устройств
+        document.addEventListener('touchstart', function() {}, {passive: true});
     </script>
 </body>
 </html>
