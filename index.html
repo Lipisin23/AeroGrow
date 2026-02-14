@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
     <style>
+        /* === ОСНОВНЫЕ СТИЛИ (БЕЗ ИЗМЕНЕНИЙ) === */
         * {
             margin: 0;
             padding: 0;
@@ -501,6 +502,213 @@
             text-decoration: underline;
         }
 
+        /* === НОВЫЙ РАЗДЕЛ: ЭКСПЕРИМЕНТ (ВИДЕО 4:3 В НАУЧНОМ СТИЛЕ) === */
+        .experiment {
+            padding: 3rem 0;
+            background: linear-gradient(135deg, #1e3c2c 0%, #2a5c3d 100%);
+            color: white;
+        }
+
+        .experiment .section-title {
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .experiment-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto 2.5rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .experiment-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .experiment-video-wrapper {
+            position: relative;
+            width: 100%;
+            background-color: #0a1f12;
+            aspect-ratio: 4/3; /* Классическое 4:3 */
+            border-bottom: 3px solid #ff9800;
+        }
+
+        .experiment-video-wrapper video {
+            width: 100%;
+            height: 100%;
+            display: block;
+            background-color: #000;
+            object-fit: contain;
+        }
+
+        .experiment-poster {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            z-index: 10;
+            background-color: #0a1f12;
+        }
+
+        .experiment-play-button {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 152, 0, 0.85);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.2rem;
+            transition: transform 0.3s, background 0.3s;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            border: 2px solid white;
+        }
+
+        .experiment-poster:hover .experiment-play-button {
+            transform: scale(1.1);
+            background: rgba(255, 152, 0, 0.95);
+        }
+
+        .experiment-info {
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .experiment-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .experiment-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            backdrop-filter: blur(4px);
+        }
+
+        .experiment-meta-item i {
+            color: #ff9800;
+            font-size: 1rem;
+        }
+
+        .experiment-description {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .experiment-observation {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.2rem;
+            border-left: 3px solid #ff9800;
+        }
+
+        .experiment-observation h4 {
+            color: #ff9800;
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .experiment-observation p {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            opacity: 0.9;
+        }
+
+        .experiment-data {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1.2rem;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            border: 1px solid #ff9800;
+        }
+
+        .experiment-data-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.4rem 0;
+            border-bottom: 1px dashed rgba(255,255,255,0.2);
+        }
+
+        .experiment-data-item:last-child {
+            border-bottom: none;
+        }
+
+        .experiment-data-label {
+            color: #aaa;
+        }
+
+        .experiment-data-value {
+            color: #ff9800;
+            font-weight: 600;
+        }
+
+        .experiment-footer {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 1.5rem;
+        }
+
+        .experiment-download-link {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 0.5rem;
+        }
+
+        .experiment-download-link a {
+            color: #ff9800;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .experiment-download-link a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .experiment-download-link p {
+            color: rgba(255, 255, 255, 0.7);
+            font-style: italic;
+        }
+
         /* Контактная информация */
         .contact {
             padding: 3rem 0;
@@ -628,7 +836,6 @@
                 max-height: 80vh;
             }
             
-            /* На мобильных - растягиваем заставку на весь экран */
             .video-poster {
                 background-size: cover !important;
             }
@@ -669,6 +876,24 @@
             .video-feature span {
                 font-size: 0.9rem;
                 text-align: left;
+            }
+
+            /* Эксперимент на мобильных */
+            .experiment-description {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .experiment-meta {
+                flex-direction: column;
+                gap: 0.8rem;
+                align-items: center;
+            }
+
+            .experiment-play-button {
+                width: 60px;
+                height: 60px;
+                font-size: 1.7rem;
             }
             
             /* Общие мобильные стили */
@@ -733,7 +958,7 @@
                 padding: 0 0.5rem;
             }
 
-            .features, .package, .advantages, .audience, .video-review, .contact {
+            .features, .package, .advantages, .audience, .video-review, .experiment, .contact {
                 padding: 2rem 0;
             }
 
@@ -791,6 +1016,10 @@
             .video-container {
                 max-width: 500px;
             }
+            
+            .experiment-container {
+                max-width: 700px;
+            }
         }
 
         /* ДЕСКТОПЫ */
@@ -811,7 +1040,7 @@
                 font-size: 2.5rem;
             }
 
-            .features, .package, .advantages, .audience, .video-review, .contact {
+            .features, .package, .advantages, .audience, .video-review, .experiment, .contact {
                 padding: 4rem 0;
             }
 
@@ -835,10 +1064,13 @@
                 font-size: 1.8rem;
             }
             
-            /* На десктопе рамка видео вплотную */
             .video-container {
                 max-width: 500px;
                 border-radius: 0;
+            }
+
+            .experiment-container {
+                max-width: 900px;
             }
         }
 
@@ -849,6 +1081,10 @@
             max-height: 100% !important;
             background-color: #000;
             border-radius: 0 !important;
+        }
+
+        .experiment-video-wrapper:-webkit-full-screen {
+            aspect-ratio: 16/9 !important;
         }
 
         /* Тёмная тема */
@@ -878,6 +1114,10 @@
             .video-container {
                 background-color: #2a2a2a;
             }
+
+            .experiment {
+                background: linear-gradient(135deg, #0f2a1a 0%, #1a3a27 100%);
+            }
         }
     </style>
 </head>
@@ -901,6 +1141,7 @@
                     <li><a href="#advantages"><i class="fas fa-star"></i> Преимущества</a></li>
                     <li><a href="#audience"><i class="fas fa-users"></i> Для кого</a></li>
                     <li><a href="#video-review"><i class="fas fa-play-circle"></i> Видеообзор</a></li>
+                    <li><a href="#experiment"><i class="fas fa-flask"></i> Эксперимент</a></li>
                     <li><a href="#contact"><i class="fas fa-envelope"></i> Контакты</a></li>
                 </ul>
             </nav>
@@ -1045,13 +1286,10 @@
 
             <div class="video-container">
                 <div class="video-wrapper" id="videoWrapper">
-                    <!-- Видео с превью и кнопкой воспроизведения -->
                     <video id="aerogrowVideo" controls playsinline poster="images/Zastavka.jpg">
                         <source src="videos/AeroGrow1_06.mp4" type="video/mp4">
                         Ваш браузер не поддерживает видео.
                     </video>
-
-                    <!-- Превью с кнопкой воспроизведения -->
                     <div class="video-poster" id="videoPoster" style="background-image: url('images/Zastavka.jpg');">
                         <div class="play-button">
                             <i class="fas fa-play"></i>
@@ -1062,8 +1300,6 @@
                 <div class="video-info">
                     <h3>Посмотрите, как работает система AeroGrow</h3>
                     <p>В этом видео мы демонстрируем все возможности системы: от установки и настройки до повседневной эксплуатации. Вы увидите, как просто управлять аэропонной установкой через Telegram-бота и как система автоматически поддерживает оптимальные условия для роста растений.</p>
-                    
-                    
                 </div>
             </div>
 
@@ -1071,6 +1307,47 @@
                 <p style="color: #666; font-style: italic; margin-top: 1.5rem;">
                     Видео также доступно на
                     <a href="https://disk.yandex.ru/i/medlxonbqjNPhQ" target="_blank" rel="noopener noreferrer">
+                        Яндекс Диске
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- НОВЫЙ РАЗДЕЛ: ЭКСПЕРИМЕНТ (ВИДЕО 4:3) -->
+    <section class="experiment" id="experiment">
+        <div class="container">
+            <h2 class="section-title">Эксперимент по выращиванию кресс-салата "Забава"</h2>
+            <p class="experiment-subtitle">30-секундное видео выращивания в системе AeroGrow</p>
+
+            <div class="experiment-container">
+                <div class="experiment-video-wrapper" id="experimentVideoWrapper">
+                    <video id="experimentVideo" controls playsinline poster="images/experiment-poster.jpg">
+                        <!-- Убедитесь, что файл существует по этому пути, либо замените на корректный -->
+                        <source src="videos/experiment-43.mp4" type="video/mp4">
+                        Ваш браузер не поддерживает видео.
+                    </video>
+                    <div class="experiment-poster" id="experimentPoster" style="background-image: url('images/experiment-poster.jpg');">
+                        <div class="experiment-play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="experiment-info">
+                    <div class="experiment-meta">
+                        <span class="experiment-meta-item"><i class="fas fa-calendar-alt"></i> С 29 Февраля по 12 Января</span>
+                        <span class="experiment-meta-item"><i class="fas fa-seedling"></i> Культура: кресс-салат "Забава"</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Добавленная ссылка на Яндекс Диск для видео эксперимента -->
+            <div class="experiment-download-link">
+                <p style="color: rgba(255, 255, 255, 0.8); font-style: italic; margin-top: 1.5rem;">
+                    Видео эксперимента также доступно на
+                    <a href="https://disk.yandex.ru/i/o0TbuNmVvDiOQQ" target="_blank" rel="noopener noreferrer" style="color: #ff9800;">
                         Яндекс Диске
                         <i class="fas fa-external-link-alt"></i>
                     </a>
@@ -1126,6 +1403,7 @@
                         <li><a href="#advantages"><i class="fas fa-chevron-right"></i> Преимущества</a></li>
                         <li><a href="#audience"><i class="fas fa-chevron-right"></i> Для кого</a></li>
                         <li><a href="#video-review"><i class="fas fa-chevron-right"></i> Видеообзор</a></li>
+                        <li><a href="#experiment"><i class="fas fa-chevron-right"></i> Эксперимент</a></li>
                         <li><a href="#contact"><i class="fas fa-chevron-right"></i> Контакты</a></li>
                     </ul>
                 </div>
@@ -1147,20 +1425,18 @@
             mobileMenu.classList.toggle('active');
         });
 
-        // Закрытие меню при клике на ссылку
         document.querySelectorAll('.mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.remove('active');
             });
         });
 
-        // Элементы видео
+        // Элементы видеообзора
         const video = document.getElementById('aerogrowVideo');
         const videoPoster = document.getElementById('videoPoster');
         const videoWrapper = document.getElementById('videoWrapper');
 
         if (video && videoPoster && videoWrapper) {
-            // Воспроизведение видео при клике на превью
             videoPoster.addEventListener('click', () => {
                 videoPoster.style.display = 'none';
                 video.play().catch(e => {
@@ -1169,22 +1445,18 @@
                 });
             });
 
-            // Показ превью при остановке видео
             video.addEventListener('pause', () => {
                 videoPoster.style.display = 'flex';
             });
 
-            // Автоматическое скрытие превью при начале воспроизведения
             video.addEventListener('play', () => {
                 videoPoster.style.display = 'none';
             });
 
-            // Скрытие превью при окончании видео
             video.addEventListener('ended', () => {
                 videoPoster.style.display = 'flex';
             });
 
-            // Для мобильных устройств
             videoPoster.addEventListener('touchstart', function(e) {
                 e.preventDefault();
                 videoPoster.style.display = 'none';
@@ -1193,27 +1465,69 @@
                 });
             }, { passive: false });
 
-            // Обработка полноэкранного режима
             video.addEventListener('fullscreenchange', handleFullscreenChange);
             video.addEventListener('webkitfullscreenchange', handleFullscreenChange);
 
             function handleFullscreenChange() {
                 const isFullscreen = document.fullscreenElement || document.webkitFullscreenElement;
-                
                 if (isFullscreen) {
-                    // В полноэкранном режиме - 16:9
                     videoWrapper.style.aspectRatio = '16/9';
                     video.style.objectFit = 'contain';
                     videoPoster.style.backgroundSize = 'contain';
                 } else {
-                    // В обычном режиме - возвращаем 9:16
                     videoWrapper.style.aspectRatio = '9/16';
                     video.style.objectFit = 'contain';
-                    
-                    // На мобильных - cover для заставки
                     if (window.innerWidth <= 767) {
                         videoPoster.style.backgroundSize = 'cover';
                     }
+                }
+            }
+        }
+
+        // Элементы видео эксперимента (4:3)
+        const expVideo = document.getElementById('experimentVideo');
+        const expPoster = document.getElementById('experimentPoster');
+        const expWrapper = document.getElementById('experimentVideoWrapper');
+
+        if (expVideo && expPoster && expWrapper) {
+            expPoster.addEventListener('click', () => {
+                expPoster.style.display = 'none';
+                expVideo.play().catch(e => {
+                    console.log("Автовоспроизведение эксперимента заблокировано");
+                    expPoster.style.display = 'flex';
+                });
+            });
+
+            expVideo.addEventListener('pause', () => {
+                expPoster.style.display = 'flex';
+            });
+
+            expVideo.addEventListener('play', () => {
+                expPoster.style.display = 'none';
+            });
+
+            expVideo.addEventListener('ended', () => {
+                expPoster.style.display = 'flex';
+            });
+
+            expPoster.addEventListener('touchstart', function(e) {
+                e.preventDefault();
+                expPoster.style.display = 'none';
+                expVideo.play().catch(e => {
+                    expPoster.style.display = 'flex';
+                });
+            }, { passive: false });
+
+            // Обработка полноэкранного режима для экспериментального видео
+            expVideo.addEventListener('fullscreenchange', handleExpFullscreen);
+            expVideo.addEventListener('webkitfullscreenchange', handleExpFullscreen);
+
+            function handleExpFullscreen() {
+                const isFullscreen = document.fullscreenElement || document.webkitFullscreenElement;
+                if (isFullscreen) {
+                    expWrapper.style.aspectRatio = '16/9';
+                } else {
+                    expWrapper.style.aspectRatio = '4/3';
                 }
             }
         }
@@ -1243,16 +1557,19 @@
 
         // Инициализация при загрузке
         window.addEventListener('load', function() {
-            // Предзагрузка видео
             const video = document.getElementById('aerogrowVideo');
-            if (video) {
-                video.load();
-            }
+            if (video) video.load();
             
-            // Настройка для мобильных
+            const expVideo = document.getElementById('experimentVideo');
+            if (expVideo) expVideo.load();
+
             if (window.innerWidth <= 767 && video) {
                 video.setAttribute('playsinline', '');
                 video.setAttribute('webkit-playsinline', '');
+            }
+            if (window.innerWidth <= 767 && expVideo) {
+                expVideo.setAttribute('playsinline', '');
+                expVideo.setAttribute('webkit-playsinline', '');
             }
         });
     </script>
