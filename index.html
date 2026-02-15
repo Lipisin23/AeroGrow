@@ -490,9 +490,9 @@
         .experiment-container {
             max-width: 800px;
             margin: 0 auto;
-            background-color: transparent; /* Убираем фон, чтобы рамка была только у видео */
-            border: none; /* Убираем внешнюю рамку */
-            box-shadow: none; /* Убираем тень от контейнера */
+            background-color: transparent;
+            border: none;
+            box-shadow: none;
             overflow: visible;
         }
 
@@ -501,9 +501,9 @@
             width: 100%;
             background-color: #0a1f12;
             aspect-ratio: 4/3;
-            border: 3px solid #ff9800; /* Рамка вплотную вокруг видео */
+            border: 3px solid #ff9800;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-            overflow: hidden; /* Чтобы рамка не обрезалась, но содержимое оставалось внутри */
+            overflow: hidden;
         }
 
         .experiment-video-wrapper video {
@@ -959,7 +959,7 @@
 
         .experiment-video-wrapper:-webkit-full-screen {
             aspect-ratio: 16/9 !important;
-            border: 3px solid #ff9800; /* Рамка сохраняется в полноэкранном режиме */
+            border: 3px solid #ff9800;
         }
 
         /* Тёмная тема */
@@ -997,6 +997,21 @@
     </style>
 </head>
 <body>
+    <!-- Яндекс.Метрика счетчик (скрытый, размещен в начале body) -->
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=106836654', 'ym');
+
+        ym(106836654, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/106836654" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+
     <!-- Шапка -->
     <header>
         <div class="container header-container">
@@ -1206,6 +1221,13 @@
                         <div class="experiment-play-button">
                             <i class="fas fa-play"></i>
                         </div>
+                    </div>
+                </div>
+
+                <div class="experiment-info">
+                    <div class="experiment-meta">
+                        <span class="experiment-meta-item"><i class="fas fa-calendar-alt"></i> С 29 Февраля по 12 Января</span>
+                        <span class="experiment-meta-item"><i class="fas fa-seedling"></i> Культура: кресс-салат "Забава"</span>
                     </div>
                 </div>
             </div>
