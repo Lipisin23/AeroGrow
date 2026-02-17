@@ -1262,44 +1262,69 @@
         </div>
     </section>
 
-    <!-- Подвал -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>AeroGrow</h3>
-                    <p>Интеллектуальная система мониторинга и управления средой для аэропоники. Автоматизация выращивания растений с удалённым контролем.</p>
-                </div>
-
-                <div class="footer-section">
-                    <h3>Контакты</h3>
-                    <ul class="footer-links">
-                        <li><a href="mailto:aero.grow-project@bk.ru"><i class="fas fa-envelope"></i> aero.grow-project@bk.ru</a></li>
-                        <li><i class="fas fa-map-marker-alt"></i> Россия, Новосибирская область</li>
-                    </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h3>Навигация</h3>
-                    <ul class="footer-links">
-                        <li><a href="#features"><i class="fas fa-chevron-right"></i> Возможности</a></li>
-                        <li><a href="#package"><i class="fas fa-chevron-right"></i> Комплектация</a></li>
-                        <li><a href="#advantages"><i class="fas fa-chevron-right"></i> Преимущества</a></li>
-                        <li><a href="#audience"><i class="fas fa-chevron-right"></i> Для кого</a></li>
-                        <li><a href="#video-review"><i class="fas fa-chevron-right"></i> Видеообзор</a></li>
-                        <li><a href="#experiment"><i class="fas fa-chevron-right"></i> Эксперимент</a></li>
-                        <li><a href="#contact"><i class="fas fa-chevron-right"></i> Контакты</a></li>
-                    </ul>
-                </div>
+<!-- Подвал -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>AeroGrow</h3>
+                <p>Интеллектуальная система мониторинга и управления средой для аэропоники. Автоматизация выращивания растений с удалённым контролем.</p>
             </div>
 
-            <div class="copyright">
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <ul class="footer-links">
+                    <li><a href="mailto:aero.grow-project@bk.ru"><i class="fas fa-envelope"></i> aero.grow-project@bk.ru</a></li>
+                    <li><i class="fas fa-map-marker-alt"></i> Россия, Новосибирская область</li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Навигация</h3>
+                <ul class="footer-links">
+                    <li><a href="#features"><i class="fas fa-chevron-right"></i> Возможности</a></li>
+                    <li><a href="#package"><i class="fas fa-chevron-right"></i> Комплектация</a></li>
+                    <li><a href="#advantages"><i class="fas fa-chevron-right"></i> Преимущества</a></li>
+                    <li><a href="#audience"><i class="fas fa-chevron-right"></i> Для кого</a></li>
+                    <li><a href="#video-review"><i class="fas fa-chevron-right"></i> Видеообзор</a></li>
+                    <li><a href="#experiment"><i class="fas fa-chevron-right"></i> Эксперимент</a></li>
+                    <li><a href="#contact"><i class="fas fa-chevron-right"></i> Контакты</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Копирайт и счетчик в одной строке -->
+        <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 1.5rem; border-top: 1px solid #2a5c3d; flex-wrap: wrap; gap: 1rem;">
+            <div class="copyright" style="padding-top: 0; border-top: none;">
                 <p>Проект участника Международного конкурса научно-технологических проектов «Большие вызовы» Котенко Матвея</p>
                 <p>© 2026 AeroGrow</p>
             </div>
+            
+            <!-- Счетчик LiveInternet в правом углу -->
+            <div style="margin-left: auto;">
+                <!--LiveInternet counter-->
+                <a href="https://www.liveinternet.ru/click;Matvey" target="_blank">
+                    <img id="licntC165" width="88" height="31" style="border:0; border-radius: 4px; opacity: 0.8; transition: opacity 0.3s;" 
+                         title="LiveInternet: показано число просмотров за 24 часа, посетителей за 24 часа и за сегодня"
+                         src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                         alt="" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'"/>
+                </a>
+                <script>
+                    (function(d,s){
+                        d.getElementById("licntC165").src = "https://counter.yadro.ru/hit;Matvey?t17.15;r" + 
+                        escape(d.referrer) + 
+                        ((typeof(s)=="undefined") ? "" : ";s" + s.width + "*" + s.height + "*" + 
+                        (s.colorDepth ? s.colorDepth : s.pixelDepth)) + 
+                        ";u" + escape(d.URL) + 
+                        ";h" + escape(d.title.substring(0,150)) + 
+                        ";" + Math.random();
+                    })(document, screen)
+                </script>
+                <!--/LiveInternet-->
+            </div>
         </div>
-    </footer>
-
+    </div>
+</footer>
     <script>
         // Мобильное меню
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
